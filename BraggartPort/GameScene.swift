@@ -13,7 +13,7 @@ class GameScene: SKScene {
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
-    
+    var butts = 1
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
