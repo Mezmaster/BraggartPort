@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F392456237031A800D7F29E /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F392455237031A800D7F29E /* PlayScene.sks */; };
 		5FBF58C6237968BE00ACFFE7 /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBF58C5237968BE00ACFFE7 /* player.swift */; };
+		5FBF58C823796F5200ACFFE7 /* deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBF58C723796F5200ACFFE7 /* deck.swift */; };
 		5FD3F99B2366FD89009C2290 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3F99A2366FD89009C2290 /* AppDelegate.swift */; };
 		5FD3F99D2366FD89009C2290 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3F99C2366FD89009C2290 /* GameScene.sks */; };
 		5FD3F99F2366FD89009C2290 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3F99E2366FD89009C2290 /* Actions.sks */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		5F392455237031A800D7F29E /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
 		5FBF58C5237968BE00ACFFE7 /* player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
+		5FBF58C723796F5200ACFFE7 /* deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deck.swift; sourceTree = "<group>"; };
 		5FD3F9972366FD89009C2290 /* BraggartPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BraggartPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD3F99A2366FD89009C2290 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FD3F99C2366FD89009C2290 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				5FD3F99E2366FD89009C2290 /* Actions.sks */,
 				5FD3F9A02366FD89009C2290 /* GameScene.swift */,
 				5FBF58C5237968BE00ACFFE7 /* player.swift */,
+				5FBF58C723796F5200ACFFE7 /* deck.swift */,
 				5FD3F9A22366FD89009C2290 /* GameViewController.swift */,
 				5FD3F9A42366FD89009C2290 /* Main.storyboard */,
 				5FD3F9A72366FD8A009C2290 /* Assets.xcassets */,
@@ -277,6 +280,7 @@
 				5FBF58C6237968BE00ACFFE7 /* player.swift in Sources */,
 				5FD3F9A12366FD89009C2290 /* GameScene.swift in Sources */,
 				5FD3F9A32366FD89009C2290 /* GameViewController.swift in Sources */,
+				5FBF58C823796F5200ACFFE7 /* deck.swift in Sources */,
 				5FD3F99B2366FD89009C2290 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,4 +18,17 @@ class Player
         playerscore = 0;
         self.playername = "FantasyName";        
     }
+    func increasePlayerScore(increase:Int)
+    {
+        playerscore += increase;
+    }
+}
+
+class HumanPlayer: Player
+{
+    
+}
+class AIPlayer: Player
+{
+    
 }
