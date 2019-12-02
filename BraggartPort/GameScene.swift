@@ -15,6 +15,12 @@ class GameScene: SKScene
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
+    override func didMove(to view: SKView)
+    {
+        let card = Card(index: 4)
+        card.position = CGPoint(x:0, y:0)
+        addChild(card)
+    }
     override func sceneDidLoad()
     {
         self.lastUpdateTime = 0

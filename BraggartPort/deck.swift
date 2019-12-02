@@ -8,237 +8,46 @@
 
 import SpriteKit
 import GameplayKit
-enum BaseCardType:Int
-{
-    case foe,
-    deed,
-    scene,
-    result,
-    nonboast
-}
-enum FoeCardType:Int
-{
-    case trout,
-    chicken,
-    urchin,
-    cat,
-    johan,
-    lonelyogre,
-    bard,
-    faeries,
-    dwarf,
-    forest,
-    ghoul,
-    carlo,
-    wizards,
-    highpriest,
-    cultists,
-    ugkrugglug,
-    spirits,
-    raiders,
-    amazon,
-    asssassins,
-    magician,
-    mercanaris,
-    gladiator,
-    fellknight,
-    sandcreatures,
-    undeadking,
-    king,
-    visitor,
-    necromancer,
-    queen,
-    dragon,
-    demon
-}
-enum DeedCardType:Int
-{
-    case wetmyself,
-    screaming,
-    stones,
-    killing,
-    terror,
-    beaten,
-    summoned,
-    captured,
-    pillaged,
-    portrait,
-    opened,
-    sister,
-    married,
-    wokeup,
-    danced,
-    overcame,
-    heroic,
-    defended,
-    barfight,
-    disguised,
-    drunk,
-    ambush,
-    lovepotion,
-    chariot,
-    outwitted,
-    weapons,
-    hat,
-    oil,
-    uprising,
-    princess,
-    elements,
-    slayer
-}
-enum SceneCardType:Int
-{
-    case family,
-    maiden,
-    spell,
-    infiltration,
-    bodyguard,
-    bedchamber,
-    steed,
-    sorcery,
-    temple,
-    bootssmile,
-    battlefield,
-    warlord,
-    frozen,
-    citadel
-}
-enum ResultCardType:Int
-{
-    case crying,
-    smell,
-    banned,
-    betterperson,
-    glow,
-    court,
-    barmaids,
-    knighted,
-    deeds,
-    painting,
-    treasures,
-    armies
-}
-enum NonBoastCardType:Int
-{
-    case liar,
-    outrageousliar,
-    triptothebar,
-    drunkendemands,
-    pickpocket,
-    distractingwench
-}
+
 class Card : SKSpriteNode
 {
     let cardname:String
     let cardtexture:SKTexture
-    let cardType:FoeCardType
+    let boastcardvalue:Int8
+    let finalcardvalue:Int8
+    var cardnames:[String] = ["UnfortunateTrout","AngryChicken","ViciousCat","Johan","TerrifiedUrchin","DrunkenDwarves",
+    "SimonTheOgre","AnnoyingBard","TribeOfFaeries","CaptainCarlo","ForestDenizens","Damned Spirits","PompousCultists",
+    "HairyRaiders","HighPriest","UgKrugGlug","Gladiator","SkilledAssassins","Mercenaries", "FellKnight", "King", "UndeadKing",
+    "SandCreatures","QueenOfSnakes","MalevolentVisitor","Necromancer","FoulestDragon","DeepestDemon", "RanScreaming", "WetMyself",
+    "HidInTerror", "WitnessedKilling", "ThrewStones", "BeatenAndRobbed", "Captured", "AccidentallySummoned", "PillagedLair", "ForcedPortrait",
+    "OpenedCrate", "MarriedSister", "ForcedMarriage", "DefendedWomenAndChildren", "HeroicTale", "BarelyOvercame", "DancedToImpress", "WokeUp",
+    "MysteriousPotion", "BarFight", "VeryDrunk", "DisguisedMyself", "LaidAmbush", "ElementalWeapons", "MadeAHat", "SkilfullyOutwitted", "ChariotRace",
+    "CoveredInOil", "LedUprising", "RescuedPrincess", "HeroicallySlew", "FourElements", "FriendsAndFamily", "SwooningMaiden", "WitchSpell", "InfiltratedCamp",
+    "RetainedBodyguard", "MightySteed", "QueenBedchamber", "ForsakenTemple", "ForbiddenSorcery", "BootsAndSmile", "DistantBattlefield", "Possessed", "FrozenWastes",
+    "RuinedCitadel", "HidCrying", "BannedFromTaverns", "GetRidOfSmell", "BetterPerson", "UnearthlyLight", "Barmaids", "RoyalCourt", "Deeds", "Knighted", "KingsPortrait",
+    "DistantLands", "CommandArmies", "KingsChampion", "WarBlessing"]
+    var cardtextures:[String] = ["FoeTroutCard", "FoeChickenCard", "FoeCatCard", "FoeJohanCard", "FoeUrchinCard", "FoeDwarfCard", "FoeLonelyOgreCard", "FoeBardCard",
+    "FoeFaeriesCard", "FoeCarloCard", "FoeForestCard", "FoeSpiritsCard", "FoeCultistsCard", "FoeRaidersCard", "FoeGladiatorCard", "FoeMercenarisCard", "FoeFellKnightCard",
+    "FoeKingCard", "FoeUndeadKingCard", "FoeSandCreaturesCard", "FoeQueenCard", "FoeVistorCard", "FoeNecromancerCard", "FoeDragonCard", "FoeDemonCard", "DeedScreamingCard",
+    "DeedWetCard", "DeedTerrorCard", "DeedKillingCard", "DeedStonesCard", "DeedBeatenCard", "DeedCapturedCard", "DeedSummonedCard", "DeedPillagedCard", "DeedPortraitCard",
+    "DeedOpenedCard", "DeedSisterCard", "DeedMarriedCard", "DeedDefendedCard", "DeedHeroicCard", "DeedOvercameCard", "DeedDancedCard", "DeedWokeUpCard", "DeedLovePotionCard",
+    "DeedBarFightCard", "DeedDrunkCard", "DeedDisguisedCard", "DeedAmbushCard", "DeedWeaponsCard", "DeedHatCard", "DeedOutwittedCard", "DeedChariotCard", "DeedOilCard", "DeedUprisingCard",
+    "DeedPrincessCard", "DeedSlayerCard", "DeedElementsCard", "SceneFamilyCard", "SceneMaidenCard", "SceneSpellCard", "SceneInfiltratedCard", "SceneBodyguardCard", "SceneSteedCard",
+    "SceneBedchamberCard", "SceneTempleCard", "SceneSorceryCard", "SceneBootsSmile", "SceneBattlefieldCard", "SceneWarlordCard", "SceneFrozenCard", "SceneCitadelCard", "ResultCryingCard",
+    "ResultBannedCard", "ResultSmellCard", "ResultBetterPersonCard", "ResultGlowCard", "ResultBarmaidsCard", "ResultCourtCard", "ResultDeedsCard", "ResultKnightCard", "ResultPaintingCard",
+    "ResultTreasuresCard", "ResultsArmiesCard", "ResultChampionCard", "ResultGodofwarCard"]
+    var boastcardvalues:[Int8] = [1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,8,8,8,9,9,1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,8,8,8,9,9,1,2,2,3,3,4,4,5,5,6,6,7,7,8,1,2,2,3,3,4,4,5,5,6,6,7,7,8]
+    var finalcardvalues:[Int8] = [1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,1,1,1,2,2,2,2,3,3,3,3,4,4,4,1,1,1,2,2,2,2,3,3,3,3,4,4,4]
     required init?(coder aDecoder: NSCoder)
     {
         fatalError("NSCoding not supported")
     }
-    init(cardType:FoeCardType)
+    init(index:Int)
     {
-        self.cardType = cardType
-        switch cardType
-        {
-        case .amazon:
-            cardtexture = SKTexture(imageNamed: "FoeAmazonCard")
-            cardname = "Amazon"
-        case .asssassins:
-            cardtexture = SKTexture(imageNamed: "FoeAssassinsCard")
-            cardname = "Assassins"
-        case .bard:
-            cardtexture = SKTexture(imageNamed: "FoeBardCard")
-            cardname = "Bard"
-        case .carlo:
-            cardtexture = SKTexture(imageNamed: "FoeCarloCard")
-            cardname = "Carlo"
-        case .cat:
-            cardtexture = SKTexture(imageNamed: "FoeCatCard")
-            cardname = "Cat"
-        case .chicken:
-            cardtexture = SKTexture(imageNamed: "FoeChickenCard")
-            cardname = "Chicken"
-        case .cultists:
-            cardtexture = SKTexture(imageNamed: "FoeCultistsCard")
-            cardname = "Cultists"
-        case .demon:
-            cardtexture = SKTexture(imageNamed: "FoeDemonCard")
-            cardname = "Demon"
-        case .dragon:
-            cardtexture = SKTexture(imageNamed: "FoeDragonCard")
-            cardname = "Dragon"
-        case .dwarf:
-            cardtexture = SKTexture(imageNamed: "FoeDwarfCard")
-            cardname = "Dwarf"
-        case .faeries:
-            cardtexture = SKTexture(imageNamed: "FoeFaeriesCard")
-            cardname = "Faeries"
-        case .fellknight:
-            cardtexture = SKTexture(imageNamed: "FoeFellKnight")
-            cardname = "FellKnight"
-        case .forest:
-            cardtexture = SKTexture(imageNamed: "FoeForestCard")
-            cardname = "Forest"
-        case .ghoul:
-            cardtexture = SKTexture(imageNamed: "FoeGhoulCard")
-            cardname = "Ghoul"
-        case .gladiator:
-            cardtexture = SKTexture(imageNamed: "FoeGladiatorCard")
-            cardname = "Gladiator"
-        case .highpriest:
-            cardtexture = SKTexture(imageNamed: "FoeHighPriestCard")
-            cardname = "HighPriest"
-        case .johan:
-            cardtexture = SKTexture(imageNamed: "FoeJohanCard")
-            cardname = "Johan"
-        case .king:
-            cardtexture = SKTexture(imageNamed: "FoeKingCard")
-            cardname = "King"
-        case .lonelyogre:
-            cardtexture = SKTexture(imageNamed: "FoeLonelyOgreCard")
-            cardname = "LonelyOgre"
-        case .magician:
-            cardtexture = SKTexture(imageNamed: "FoeMagicianCard")
-            cardname = "Magician"
-        case .mercanaris:
-            cardtexture = SKTexture(imageNamed: "FoeMercanarisCard")
-            cardname = "Mercanaris"
-        case .necromancer:
-            cardtexture = SKTexture(imageNamed: "FoeNecromancerCard")
-            cardname = "Necromancer"
-        case .queen:
-            cardtexture = SKTexture(imageNamed: "FoeQueenCard")
-            cardname = "Queen"
-        case .raiders:
-            cardtexture = SKTexture(imageNamed: "FoeRaidersCard")
-            cardname = "Raiders"
-        case .sandcreatures:
-            cardtexture = SKTexture(imageNamed: "FoeSandCreaturesCard")
-            cardname = "SandCreatures"
-        case .spirits:
-            cardtexture = SKTexture(imageNamed: "FoeSpiritsCard")
-            cardname = "Spirits"
-        case .trout:
-            cardtexture = SKTexture(imageNamed: "FoeTroutCard")
-            cardname = "Trout"
-        case .ugkrugglug:
-            cardtexture = SKTexture(imageNamed: "FoeUgKrugGlugCard")
-            cardname = "UgKrugGlug"
-        case .undeadking:
-            cardtexture = SKTexture(imageNamed: "FoeUndeadKingCard")
-            cardname = "UndeadKing"
-        case .urchin:
-            cardtexture = SKTexture(imageNamed: "FoeUrchinCard")
-            cardname = "Urchin"
-        case .visitor:
-            cardtexture = SKTexture(imageNamed: "FoeVisitorCard")
-            cardname = "Visitor"
-        case .wizards:
-            cardtexture = SKTexture(imageNamed: "FoeWizardsCard")
-            cardname = "Wizards"
-            
-        }
+        cardname = cardnames[index]
+        cardtexture = SKTexture(imageNamed: cardtextures[index])
+        boastcardvalue = boastcardvalues[index]
+        finalcardvalue = finalcardvalues[index]
         super.init(texture: cardtexture, color: .clear, size: CGSize(width:120, height:180))
     }
 }
