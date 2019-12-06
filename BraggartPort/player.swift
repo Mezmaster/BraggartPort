@@ -13,17 +13,22 @@ class Player
 {
     var playername:String
     var playerscore:Int
+    var playerhand:[Card]
     init ()
     {
-        playerscore = 0;
-        self.playername = "FantasyName";        
+        self.playerscore = 0;
+        self.playername = "FantasyName";
+        self.playerhand = []
     }
     func increasePlayerScore(increase:Int)
     {
         playerscore += increase;
     }
+    func getPlayerScore()->Int
+    {
+        return playerscore
+    }
 }
-
 class HumanPlayer: Player
 {
     

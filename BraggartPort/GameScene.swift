@@ -17,9 +17,7 @@ class GameScene: SKScene
     private var lastUpdateTime : TimeInterval = 0
     override func didMove(to view: SKView)
     {
-        let card = Card(index: 4)
-        card.position = CGPoint(x:0, y:0)
-        addChild(card)
+
     }
     override func sceneDidLoad()
     {
@@ -27,8 +25,8 @@ class GameScene: SKScene
     }
     func touchDown(atPoint pos : CGPoint)
     {
+        
     }
-    
     func touchMoved(toPoint pos : CGPoint)
     {
 

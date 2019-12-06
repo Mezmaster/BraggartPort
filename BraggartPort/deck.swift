@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import Foundation
 
 class Card : SKSpriteNode
 {
@@ -49,6 +50,31 @@ class Card : SKSpriteNode
         boastcardvalue = boastcardvalues[index]
         finalcardvalue = finalcardvalues[index]
         super.init(texture: cardtexture, color: .clear, size: CGSize(width:120, height:180))
+    }
+    func getBoastValue()->Int8
+    {
+        return boastcardvalue
+    }
+    func getFinalValue()->Int8
+    {
+        return finalcardvalue
+    }
+    struct DeckStack
+    {
+        private var deck:[Card] = []
+        func peek()->Card
+        {
+            guard let topCard = deck.first else {fatalError("Deck is empty")}
+            return topCard
+        }
+        mutating func pop()->Card
+        {
+            return deck.removeFirst()
+        }
+        mutating func push(_ card:Card)
+        {
+            deck.insert(card, at: 0)
+        }
     }
 }
 
