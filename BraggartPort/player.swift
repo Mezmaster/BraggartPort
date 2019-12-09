@@ -11,13 +11,19 @@ import GameplayKit
 
 class Player
 {
+    var playernames:[String] = ["Jaxa", "Tyne", "Mori", "Liliana", "Chandra", "Jace", "Gideon", "Lucien", "Jasper",
+    "Rosalia", "Marie", "Joel", "Yavvum", "Teka", "Cronos", "Kratos", "Geralt", "Alistair", "Ulfric", "Wulfric",
+    "Miku", "Luka", "Rin", "Garrosh", "Xanathar", "Bolas", "Ophelia", "Courtney", "Jester", "Fjord", "Alduin"]
     var playername:String
     var playerscore:Int
     var playerhand:[Card]
     init ()
     {
+        let randomSource = GKARC4RandomSource()
+        let nameindex = randomSource.nextInt(upperBound: playernames.count)
         self.playerscore = 0;
-        self.playername = "FantasyName";
+        self.playername = playernames[nameindex]
+        print(playername)
         self.playerhand = []
     }
     func increasePlayerScore(increase:Int)
@@ -28,10 +34,17 @@ class Player
     {
         return playerscore
     }
+    func getPlayerName()->String
+    {
+        return playername
+    }
+    func getHandSize()->Int
+    {
+        return playerhand.count
+    }
     func drawCard(card:Card)
     {
         playerhand.append(card)
-        print(playerhand.count)
     }
 }
 class HumanPlayer: Player

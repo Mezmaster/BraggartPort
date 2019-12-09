@@ -39,7 +39,10 @@ class GameScene: SKScene
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
     var deck = DeckStack()
-    var player = Player()
+    var player1 = Player()
+    var player2 = Player()
+    var player3 = Player()
+    var player4 = Player()
     override func didMove(to view: SKView)
     {
         /*
@@ -47,10 +50,17 @@ class GameScene: SKScene
         card1.position = CGPoint(x:0, y:0)
         addChild(card1)
         */
+        var initialcards:[Card] = []
         for i in 0...91
         {
             let card = Card(index: i)
-            deck.push(card)
+            initialcards.append(card)
+        }
+        let shuffledcards:[Card] = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: initialcards) as! [Card]
+        for i in 0..<shuffledcards.count
+        {
+            deck.push(shuffledcards[i])
+            print(shuffledcards[i].getCardName())
         }
     }
     override func sceneDidLoad()

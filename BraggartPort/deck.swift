@@ -60,5 +60,9 @@ class Card : SKSpriteNode
     {
         return finalcardvalue
     }
+    func getCardName()->String
+    {
+        return cardname
+    }
 }
 
