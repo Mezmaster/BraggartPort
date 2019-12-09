@@ -39,6 +39,7 @@ class GameScene: SKScene
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
     var deck = DeckStack()
+    var player = Player()
     override func didMove(to view: SKView)
     {
         /*
@@ -58,15 +59,12 @@ class GameScene: SKScene
     }
     func touchDown(atPoint pos : CGPoint)
     {
-        let card = deck.pop()
-        card.position = CGPoint(x:0, y:0)
-        addChild(card)
+
     }
     func touchMoved(toPoint pos : CGPoint)
     {
-
+        
     }
-    
     func touchUp(atPoint pos : CGPoint)
     {
 

@@ -28,6 +28,11 @@ class Player
     {
         return playerscore
     }
+    func drawCard(card:Card)
+    {
+        playerhand.append(card)
+        print(playerhand.count)
+    }
 }
 class HumanPlayer: Player
 {
