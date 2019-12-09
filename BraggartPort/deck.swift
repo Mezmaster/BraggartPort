@@ -17,8 +17,8 @@ class Card : SKSpriteNode
     let boastcardvalue:Int8
     let finalcardvalue:Int8
     var cardnames:[String] = ["UnfortunateTrout","AngryChicken","ViciousCat","Johan","TerrifiedUrchin","DrunkenDwarves",
-    "SimonTheOgre","AnnoyingBard","TribeOfFaeries","CaptainCarlo","ForestDenizens","Damned Spirits","PompousCultists",
-    "HairyRaiders","HighPriest","UgKrugGlug","Gladiator","SkilledAssassins","Mercenaries", "FellKnight", "King", "UndeadKing",
+    "SimonTheOgre","AnnoyingBard","TribeOfFaeries","CaptainCarlo","ForestDenizens", "Wizards", "Ghoul", "Damned Spirits","PompousCultists",
+    "HairyRaiders","HighPriest","UgKrugGlug","Gladiator","SkilledAssassins","Mercenaries", "AmazonWarrior", "RogueMagician", "FellKnight", "King", "UndeadKing",
     "SandCreatures","QueenOfSnakes","MalevolentVisitor","Necromancer","FoulestDragon","DeepestDemon", "RanScreaming", "WetMyself",
     "HidInTerror", "WitnessedKilling", "ThrewStones", "BeatenAndRobbed", "Captured", "AccidentallySummoned", "PillagedLair", "ForcedPortrait",
     "OpenedCrate", "MarriedSister", "ForcedMarriage", "DefendedWomenAndChildren", "HeroicTale", "BarelyOvercame", "DancedToImpress", "WokeUp",
@@ -28,15 +28,15 @@ class Card : SKSpriteNode
     "RuinedCitadel", "HidCrying", "BannedFromTaverns", "GetRidOfSmell", "BetterPerson", "UnearthlyLight", "Barmaids", "RoyalCourt", "Deeds", "Knighted", "KingsPortrait",
     "DistantLands", "CommandArmies", "KingsChampion", "WarBlessing"]
     var cardtextures:[String] = ["FoeTroutCard", "FoeChickenCard", "FoeCatCard", "FoeJohanCard", "FoeUrchinCard", "FoeDwarfCard", "FoeLonelyOgreCard", "FoeBardCard",
-    "FoeFaeriesCard", "FoeCarloCard", "FoeForestCard", "FoeSpiritsCard", "FoeCultistsCard", "FoeRaidersCard", "FoeGladiatorCard", "FoeMercenarisCard", "FoeFellKnightCard",
-    "FoeKingCard", "FoeUndeadKingCard", "FoeSandCreaturesCard", "FoeQueenCard", "FoeVistorCard", "FoeNecromancerCard", "FoeDragonCard", "FoeDemonCard", "DeedScreamingCard",
-    "DeedWetCard", "DeedTerrorCard", "DeedKillingCard", "DeedStonesCard", "DeedBeatenCard", "DeedCapturedCard", "DeedSummonedCard", "DeedPillagedCard", "DeedPortraitCard",
+    "FoeFaeriesCard", "FoeCarloCard", "FoeForestCard", "FoeWizardsCard", "FoeGhoulCard", "FoeSpiritsCard", "FoeCultistsCard", "FoeRaidersCard", "FoeUgKrugGlugCard", "FoeHighPriestCard",
+    "FoeGladiatorCard", "FoeAssassinsCard", "FoeMercenarisCard", "FoeAmazonCard", "FoeMagicianCard", "FoeFellKnight", "FoeKingCard", "FoeUndeadKingCard", "FoeSandCreaturesCard", "FoeQueenCard", "FoeVisitorCard",
+    "FoeNecromancerCard", "FoeDragonCard", "FoeDemonCard", "DeedScreamingCard", "DeedWetCard", "DeedTerrorCard", "DeedKillingCard", "DeedStonesCard", "DeedBeatenCard", "DeedCapturedCard", "DeedSummonedCard", "DeedPillagedCard", "DeedPortraitCard",
     "DeedOpenedCard", "DeedSisterCard", "DeedMarriedCard", "DeedDefendedCard", "DeedHeroicCard", "DeedOvercameCard", "DeedDancedCard", "DeedWokeUpCard", "DeedLovePotionCard",
     "DeedBarFightCard", "DeedDrunkCard", "DeedDisguisedCard", "DeedAmbushCard", "DeedWeaponsCard", "DeedHatCard", "DeedOutwittedCard", "DeedChariotCard", "DeedOilCard", "DeedUprisingCard",
-    "DeedPrincessCard", "DeedSlayerCard", "DeedElementsCard", "SceneFamilyCard", "SceneMaidenCard", "SceneSpellCard", "SceneInfiltratedCard", "SceneBodyguardCard", "SceneSteedCard",
-    "SceneBedchamberCard", "SceneTempleCard", "SceneSorceryCard", "SceneBootsSmile", "SceneBattlefieldCard", "SceneWarlordCard", "SceneFrozenCard", "SceneCitadelCard", "ResultCryingCard",
-    "ResultBannedCard", "ResultSmellCard", "ResultBetterPersonCard", "ResultGlowCard", "ResultBarmaidsCard", "ResultCourtCard", "ResultDeedsCard", "ResultKnightCard", "ResultPaintingCard",
-    "ResultTreasuresCard", "ResultsArmiesCard", "ResultChampionCard", "ResultGodofwarCard"]
+    "DeedPrincessCard", "DeedSlayerCard", "DeedElementsCard", "SceneFamilyCard", "SceneMaidenCard", "SceneSpellCard", "SceneInfiltrationCard", "SceneBodyguardCard", "SceneSteedCard",
+    "SceneBedchamberCard", "SceneTempleCard", "SceneSorceryCard", "SceneBootsSmileCard", "SceneBattlefieldCard", "SceneWarlordCard", "SceneFrozenCard", "SceneCitadelCard", "ResultCryingCard",
+    "ResultBannedCard", "ResultSmellCard", "ResultBetterPersonCard", "ResultGlowCard", "ResultBarmaidsCard", "ResultCourtCard", "ResultDeedsCard", "ResultKnightedCard", "ResultPaintingCard",
+    "ResultTreasuresCard", "ResultArmiesCard", "ResultChampionCard", "ResultGodofwarCard"]
     var boastcardvalues:[Int8] = [1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,8,8,8,9,9,1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,8,8,8,9,9,1,2,2,3,3,4,4,5,5,6,6,7,7,8,1,2,2,3,3,4,4,5,5,6,6,7,7,8]
     var finalcardvalues:[Int8] = [1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,1,1,1,2,2,2,2,3,3,3,3,4,4,4,1,1,1,2,2,2,2,3,3,3,3,4,4,4]
     required init?(coder aDecoder: NSCoder)
@@ -47,6 +47,7 @@ class Card : SKSpriteNode
     {
         cardname = cardnames[index]
         cardtexture = SKTexture(imageNamed: cardtextures[index])
+        //cardtexture = SKTexture(imageNamed: "FoeFellKnightCard")
         boastcardvalue = boastcardvalues[index]
         finalcardvalue = finalcardvalues[index]
         super.init(texture: cardtexture, color: .clear, size: CGSize(width:120, height:180))
@@ -58,23 +59,6 @@ class Card : SKSpriteNode
     func getFinalValue()->Int8
     {
         return finalcardvalue
-    }
-    struct DeckStack
-    {
-        private var deck:[Card] = []
-        func peek()->Card
-        {
-            guard let topCard = deck.first else {fatalError("Deck is empty")}
-            return topCard
-        }
-        mutating func pop()->Card
-        {
-            return deck.removeFirst()
-        }
-        mutating func push(_ card:Card)
-        {
-            deck.insert(card, at: 0)
-        }
     }
 }
 
