@@ -62,17 +62,35 @@ class DraftState : GKState
         self.player4name = player4.getPlayerName()
         player1label = SKLabelNode()
         self.player1label.position = CGPoint(x: -250, y: 180)
+        self.player1label.zPosition = CGFloat(2)
         self.player1label.text = "\(player1name): \(player1hand) cards"
         player2label = SKLabelNode()
         self.player2label.position = CGPoint(x: 250, y: 180)
+        self.player2label.zPosition = CGFloat(2)
         self.player2label.text = "\(player2name): \(player2hand) cards"
         player3label = SKLabelNode()
         self.player3label.position = CGPoint(x: -250, y: -200)
+        self.player3label.zPosition = CGFloat(2)
         self.player3label.text = "\(player3name): \(player3hand) cards"
         player4label = SKLabelNode()
         self.player4label.position = CGPoint(x: 250, y: -200)
+        self.player4label.zPosition = CGFloat(2)
         self.player4label.text = "\(player4name): \(player4hand) cards"
         super.init()
+    }
+    override func didEnter(from previousState: GKState?)
+    {
+        scene?.addChild(player1label)
+        scene?.addChild(player2label)
+        scene?.addChild(player3label)
+        scene?.addChild(player4label)
+    }
+    override func willExit(to nextState: GKState)
+    {
+        player1label.removeFromParent()
+        player2label.removeFromParent()
+        player3label.removeFromParent()
+        player4label.removeFromParent()
     }
 }
 class PlayState : GKState
@@ -86,13 +104,17 @@ class PlayState : GKState
         self.playername = player.getPlayerName()
         playerlabel = SKLabelNode()
         self.playerlabel.position = CGPoint(x: -277, y: 181)
+        self.playerlabel.zPosition = CGFloat(2)
         self.playerlabel.text = "\(playername)'s turn"
-        scene.addChild(playerlabel)
         super.init()
     }
     override func didEnter(from previousState: GKState?)
     {
-        print(playername)
+        scene?.addChild(playerlabel)
+    }
+    override func willExit(to nextState: GKState)
+    {
+        playerlabel.removeFromParent()
     }
 }
 class GameScene: SKScene
@@ -127,7 +149,7 @@ class GameScene: SKScene
             player3.drawCard(card: deck.pop())
             player4.drawCard(card: deck.pop())
         }
-        self.stateMachine = GKStateMachine(states: [DraftState(scene: self, player1: player1, player2: player2, player3: player3, player4: player4), PlayState(scene:self, player: player1), PlayState(scene:self, player: player2)])
+        self.stateMachine = GKStateMachine(states: [DraftState(scene: self, player1: player1, player2: player2, player3: player3, player4: player4), PlayState(scene:self, player: player1)])
         self.stateMachine.enter(DraftState.self)
     }
     override func sceneDidLoad()
@@ -136,7 +158,7 @@ class GameScene: SKScene
     }
     func touchDown(atPoint pos : CGPoint)
     {
-
+        
     }
     func touchMoved(toPoint pos : CGPoint)
     {
@@ -159,9 +181,9 @@ class GameScene: SKScene
         for t in touches
         {
             let location = t.location(in: self)
-            if let card1 = atPoint(location) as? Card
+            if let card = atPoint(location) as? Card
             {
-                card1.position = location
+                card.position = location
             }
         }
     }
