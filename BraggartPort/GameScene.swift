@@ -63,28 +63,36 @@ class DraftState : GKState
         player1label = SKLabelNode()
         self.player1label.position = CGPoint(x: -250, y: 180)
         self.player1label.text = "\(player1name): \(player1hand) cards"
-        scene.addChild(player1label)
         player2label = SKLabelNode()
         self.player2label.position = CGPoint(x: 250, y: 180)
         self.player2label.text = "\(player2name): \(player2hand) cards"
-        scene.addChild(player2label)
         player3label = SKLabelNode()
         self.player3label.position = CGPoint(x: -250, y: -200)
         self.player3label.text = "\(player3name): \(player3hand) cards"
-        scene.addChild(player3label)
         player4label = SKLabelNode()
         self.player4label.position = CGPoint(x: 250, y: -200)
         self.player4label.text = "\(player4name): \(player4hand) cards"
-        scene.addChild(player4label)
         super.init()
     }
 }
 class PlayState : GKState
 {
     var scene : GameScene?
-    init (scene: GameScene)
+    var playerlabel : SKLabelNode!
+    var playername : String
+    init (scene: GameScene, player: Player)
     {
-        
+        self.scene = scene
+        self.playername = player.getPlayerName()
+        playerlabel = SKLabelNode()
+        self.playerlabel.position = CGPoint(x: -277, y: 181)
+        self.playerlabel.text = "\(playername)'s turn"
+        scene.addChild(playerlabel)
+        super.init()
+    }
+    override func didEnter(from previousState: GKState?)
+    {
+        print(playername)
     }
 }
 class GameScene: SKScene
@@ -119,7 +127,7 @@ class GameScene: SKScene
             player3.drawCard(card: deck.pop())
             player4.drawCard(card: deck.pop())
         }
-        self.stateMachine = GKStateMachine(states: [DraftState(scene: self, player1: player1, player2: player2, player3: player3, player4: player4), PlayState(scene:self)])
+        self.stateMachine = GKStateMachine(states: [DraftState(scene: self, player1: player1, player2: player2, player3: player3, player4: player4), PlayState(scene:self, player: player1), PlayState(scene:self, player: player2)])
         self.stateMachine.enter(DraftState.self)
     }
     override func sceneDidLoad()
@@ -136,9 +144,8 @@ class GameScene: SKScene
     }
     func touchUp(atPoint pos : CGPoint)
     {
-
+        self.stateMachine.enter(PlayState.self)
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         for t in touches
