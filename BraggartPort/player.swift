@@ -14,7 +14,8 @@ class Player
     var playernames:[String] = ["Jaxa", "Tyne", "Mori", "Liliana", "Chandra", "Jace", "Gideon", "Lucien", "Jasper",
     "Rosalia", "Marie", "Joel", "Yavvum", "Teka", "Cronos", "Kratos", "Geralt", "Alistair", "Ulfric", "Wulfric",
     "Miku", "Luka", "Rin", "Garrosh", "Xanathar", "Bolas", "Ophelia", "Courtney", "Jester", "Fjord", "Alduin",
-    "Jaune", "Ruby", "Yang", "Blake", "Weiss", "Nora", "Ren", "Morrigan", "Ciri"]
+    "Jaune", "Ruby", "Yang", "Blake", "Weiss", "Nora", "Ren", "Morrigan", "Ciri", "Charlotte", "Albert", "Olie",
+    "Jordan", "Calcifer", "Matt", "Nate"]
     var playername:String
     var playerscore:Int
     var playerhand:[Card]
@@ -24,7 +25,6 @@ class Player
         let nameindex = randomSource.nextInt(upperBound: playernames.count)
         self.playerscore = 0;
         self.playername = playernames[nameindex]
-        print(playername)
         self.playerhand = []
     }
     func increasePlayerScore(increase:Int)

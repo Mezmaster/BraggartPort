@@ -33,11 +33,54 @@ struct DeckStack
         return deck.count
     }
 }
+class DraftState : GKState
+{
+    var scene : GameScene?
+    var player1label : SKLabelNode!
+    var player2label: SKLabelNode!
+    var player3label : SKLabelNode!
+    var player4label : SKLabelNode!
+    //var draftphase : SKLabelNode
+    var player1hand : Int
+    var player2hand : Int
+    var player3hand : Int
+    var player4hand : Int
+    var player1name : String
+    var player2name : String
+    var player3name : String
+    var player4name : String
+    init (scene: GameScene, player1: Player, player2: Player, player3: Player, player4: Player)
+    {
+        self.scene = scene
+        self.player1hand = player1.getHandSize()
+        self.player1name = player1.getPlayerName()
+        self.player2hand = player2.getHandSize()
+        self.player2name = player2.getPlayerName()
+        self.player3hand = player3.getHandSize()
+        self.player3name = player3.getPlayerName()
+        self.player4hand = player4.getHandSize()
+        self.player4name = player4.getPlayerName()
+        player1label = SKLabelNode()
+        self.player1label.position = CGPoint(x: -218, y: 181)
+        self.player1label.text = "\(player1name): \(player1hand) cards"
+        scene.addChild(player1label)
+        super.init()
+    }
+}
+class PlayState : GKState
+{
+    var scene : GameScene?
+    init (scene: GameScene)
+    {
+        
+    }
+}
 class GameScene: SKScene
 {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
+    var stateMachine: GKStateMachine!
     var deck = DeckStack()
     var player1 = Player()
     var player2 = Player()
@@ -45,11 +88,6 @@ class GameScene: SKScene
     var player4 = Player()
     override func didMove(to view: SKView)
     {
-        /*
-        let card1 = Card(index: 0)
-        card1.position = CGPoint(x:0, y:0)
-        addChild(card1)
-        */
         var initialcards:[Card] = []
         for i in 0...91
         {
@@ -60,8 +98,17 @@ class GameScene: SKScene
         for i in 0..<shuffledcards.count
         {
             deck.push(shuffledcards[i])
-            print(shuffledcards[i].getCardName())
+            //print(shuffledcards[i].getCardName())
         }
+        for i in 0...4
+        {
+            player1.drawCard(card: deck.pop())
+            player2.drawCard(card: deck.pop())
+            player3.drawCard(card: deck.pop())
+            player4.drawCard(card: deck.pop())
+        }
+        self.stateMachine = GKStateMachine(states: [DraftState(scene: self, player1: player1, player2: player2, player3: player3, player4: player4), PlayState(scene:self)])
+        self.stateMachine.enter(DraftState.self)
     }
     override func sceneDidLoad()
     {
@@ -127,7 +174,7 @@ class GameScene: SKScene
         {
             entity.update(deltaTime: dt)
         }
-        
+        self.stateMachine.update(deltaTime: currentTime)
         self.lastUpdateTime = currentTime
     }
 }
