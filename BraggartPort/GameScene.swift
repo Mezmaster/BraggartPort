@@ -61,9 +61,21 @@ class DraftState : GKState
         self.player4hand = player4.getHandSize()
         self.player4name = player4.getPlayerName()
         player1label = SKLabelNode()
-        self.player1label.position = CGPoint(x: -218, y: 181)
+        self.player1label.position = CGPoint(x: -250, y: 180)
         self.player1label.text = "\(player1name): \(player1hand) cards"
         scene.addChild(player1label)
+        player2label = SKLabelNode()
+        self.player2label.position = CGPoint(x: 250, y: 180)
+        self.player2label.text = "\(player2name): \(player2hand) cards"
+        scene.addChild(player2label)
+        player3label = SKLabelNode()
+        self.player3label.position = CGPoint(x: -250, y: -200)
+        self.player3label.text = "\(player3name): \(player3hand) cards"
+        scene.addChild(player3label)
+        player4label = SKLabelNode()
+        self.player4label.position = CGPoint(x: 250, y: -200)
+        self.player4label.text = "\(player4name): \(player4hand) cards"
+        scene.addChild(player4label)
         super.init()
     }
 }
