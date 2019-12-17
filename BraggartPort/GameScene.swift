@@ -133,6 +133,7 @@ class PlayState1 : GKState
     var deck : DeckStack?
     var player : Player?
     var handsize : Int?
+    var hand:[Card] = []
     var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
                                    CGPoint(x: 200, y: -150),
                                    CGPoint(x: 120, y: -150),
@@ -160,7 +161,16 @@ class PlayState1 : GKState
         scene?.addChild(playerlabel)
         for i in 0..<handsize
         {
-            let card = player?.displayCard(index: i)
+            let card = player?.getCard(index: i)
+            hand.append(card!)
+            card?.position = CGPoint(x: -400, y: -150)
+            card?.size = CGSize(width: 60, height: 90)
+            card?.zPosition = CGFloat(3)
+            scene?.addChild(card!)
+        }
+        for i in 0..<handsize
+        {
+            hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
         }
     }
     override func willExit(to nextState: GKState)
@@ -172,11 +182,23 @@ class PlayState2 : GKState
 {
     var scene : GameScene?
     var deck : DeckStack?
+    var player : Player?
+    var handsize : Int?
+    var hand:[Card] = []
+    var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
+                                   CGPoint(x: 200, y: -150),
+                                   CGPoint(x: 120, y: -150),
+                                   CGPoint(x: 40, y: -150),
+                                   CGPoint(x: -40, y: -150),
+                                   CGPoint(x: -120, y: -150),
+                                   CGPoint(x:-200, y: -150),
+                                   CGPoint(x: -280, y: -150)]
     var playerlabel : SKLabelNode!
     var playername : String
     init (scene: GameScene, player: Player, deck: DeckStack)
     {
         self.scene = scene
+        self.player = player
         self.playername = player.getPlayerName()
         playerlabel = SKLabelNode()
         self.playerlabel.position = CGPoint(x: -277, y: 181)
@@ -186,7 +208,21 @@ class PlayState2 : GKState
     }
     override func didEnter(from previousState: GKState?)
     {
+        let handsize = player?.getHandSize() as! Int
         scene?.addChild(playerlabel)
+        for i in 0..<handsize
+        {
+            let card = player?.getCard(index: i)
+            hand.append(card!)
+            card?.position = CGPoint(x: -400, y: -150)
+            card?.size = CGSize(width: 60, height: 90)
+            card?.zPosition = CGFloat(3)
+            scene?.addChild(card!)
+        }
+        for i in 0..<handsize
+        {
+            hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
+        }
     }
     override func willExit(to nextState: GKState)
     {
@@ -197,11 +233,23 @@ class PlayState3 : GKState
 {
     var scene : GameScene?
     var deck : DeckStack?
+    var player : Player?
+    var handsize : Int?
+    var hand:[Card] = []
+    var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
+                                   CGPoint(x: 200, y: -150),
+                                   CGPoint(x: 120, y: -150),
+                                   CGPoint(x: 40, y: -150),
+                                   CGPoint(x: -40, y: -150),
+                                   CGPoint(x: -120, y: -150),
+                                   CGPoint(x:-200, y: -150),
+                                   CGPoint(x: -280, y: -150)]
     var playerlabel : SKLabelNode!
     var playername : String
     init (scene: GameScene, player: Player, deck: DeckStack)
     {
         self.scene = scene
+        self.player = player
         self.playername = player.getPlayerName()
         playerlabel = SKLabelNode()
         self.playerlabel.position = CGPoint(x: -277, y: 181)
@@ -211,7 +259,21 @@ class PlayState3 : GKState
     }
     override func didEnter(from previousState: GKState?)
     {
+        let handsize = player?.getHandSize() as! Int
         scene?.addChild(playerlabel)
+        for i in 0..<handsize
+        {
+            let card = player?.getCard(index: i)
+            hand.append(card!)
+            card?.position = CGPoint(x: -400, y: -150)
+            card?.size = CGSize(width: 60, height: 90)
+            card?.zPosition = CGFloat(3)
+            scene?.addChild(card!)
+        }
+        for i in 0..<handsize
+        {
+            hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
+        }
     }
     override func willExit(to nextState: GKState)
     {
@@ -222,11 +284,23 @@ class PlayState4 : GKState
 {
     var scene : GameScene?
     var deck : DeckStack?
+    var player : Player?
+    var handsize : Int?
+    var hand:[Card] = []
+    var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
+                                   CGPoint(x: 200, y: -150),
+                                   CGPoint(x: 120, y: -150),
+                                   CGPoint(x: 40, y: -150),
+                                   CGPoint(x: -40, y: -150),
+                                   CGPoint(x: -120, y: -150),
+                                   CGPoint(x:-200, y: -150),
+                                   CGPoint(x: -280, y: -150)]
     var playerlabel : SKLabelNode!
     var playername : String
     init (scene: GameScene, player: Player, deck: DeckStack)
     {
         self.scene = scene
+        self.player = player
         self.playername = player.getPlayerName()
         playerlabel = SKLabelNode()
         self.playerlabel.position = CGPoint(x: -277, y: 181)
@@ -236,7 +310,21 @@ class PlayState4 : GKState
     }
     override func didEnter(from previousState: GKState?)
     {
+        let handsize = player?.getHandSize() as! Int
         scene?.addChild(playerlabel)
+        for i in 0..<handsize
+        {
+            let card = player?.getCard(index: i)
+            hand.append(card!)
+            card?.position = CGPoint(x: -400, y: -150)
+            card?.size = CGSize(width: 60, height: 90)
+            card?.zPosition = CGFloat(3)
+            scene?.addChild(card!)
+        }
+        for i in 0..<handsize
+        {
+            hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
+        }
     }
     override func willExit(to nextState: GKState)
     {

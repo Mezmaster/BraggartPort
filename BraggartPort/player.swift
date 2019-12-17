@@ -48,7 +48,7 @@ class Player
     {
         playerhand.append(card)
     }
-    func displayCard(index: Int)->Card
+    func getCard(index: Int)->Card
     {
         return playerhand[index]
     }
