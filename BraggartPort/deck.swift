@@ -16,6 +16,7 @@ class Card : SKSpriteNode
     let cardtexture:SKTexture
     let boastcardvalue:Int
     let finalcardvalue:Int
+    let cardtype:Int
     var cardnames:[String] = ["UnfortunateTrout","AngryChicken","ViciousCat","Johan","TerrifiedUrchin","DrunkenDwarves",
     "SimonTheOgre","AnnoyingBard","TribeOfFaeries","CaptainCarlo","ForestDenizens", "Wizards", "Ghoul", "Damned Spirits","PompousCultists",
     "HairyRaiders","HighPriest","UgKrugGlug","Gladiator","SkilledAssassins","Mercenaries", "AmazonWarrior", "RogueMagician", "FellKnight", "King", "UndeadKing",
@@ -39,6 +40,10 @@ class Card : SKSpriteNode
     "ResultTreasuresCard", "ResultArmiesCard", "ResultChampionCard", "ResultGodofwarCard"]
     var boastcardvalues:[Int] = [1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,8,8,8,9,9,1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,8,8,8,9,9,1,2,2,3,3,4,4,5,5,6,6,7,7,8,1,2,2,3,3,4,4,5,5,6,6,7,7,8]
     var finalcardvalues:[Int] = [1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,1,1,1,2,2,2,2,3,3,3,3,4,4,4,1,1,1,2,2,2,2,3,3,3,3,4,4,4]
+    var cardtypes:[Int] = [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+                          2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+                          1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                          4,4,4,4,4,4,4,4,4,4,4,4,4,4]
     required init?(coder aDecoder: NSCoder)
     {
         fatalError("NSCoding not supported")
@@ -49,6 +54,7 @@ class Card : SKSpriteNode
         cardtexture = SKTexture(imageNamed: cardtextures[index])
         boastcardvalue = boastcardvalues[index]
         finalcardvalue = finalcardvalues[index]
+        cardtype = cardtypes[index]
         super.init(texture: cardtexture, color: .clear, size: CGSize(width: 120, height: 180))
     }
     func getBoastValue()->Int
@@ -62,6 +68,10 @@ class Card : SKSpriteNode
     func getCardName()->String
     {
         return cardname
+    }
+    func getCardType()->Int
+    {
+        return cardtype
     }
 }
 

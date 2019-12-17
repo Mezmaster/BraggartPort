@@ -16,6 +16,7 @@ class DraftState : GKState
     var deck : DeckStack?
     var draft:[Card] = []
     var positions:[CGPoint] = [CGPoint(x: 240, y: 0), CGPoint(x: 80, y:0), CGPoint(x: -80, y:0), CGPoint(x:-240, y:0)]
+    var playerpriority: Int;
     var player1label : SKLabelNode!
     var player2label: SKLabelNode!
     var player3label : SKLabelNode!
@@ -49,6 +50,7 @@ class DraftState : GKState
         self.player1label.position = CGPoint(x: -250, y: 180)
         self.player1label.zPosition = CGFloat(2)
         self.player1label.text = "\(player1name): \(player1hand) cards"
+        self.player1label.fontColor = UIColor.green
         player2label = SKLabelNode()
         self.player2label.position = CGPoint(x: 250, y: 180)
         self.player2label.zPosition = CGFloat(2)
@@ -69,10 +71,12 @@ class DraftState : GKState
         self.draftphase.position = CGPoint(x: 0, y: 120)
         self.draftphase.zPosition = CGFloat(2)
         self.draftphase.text = "Draft Phase"
+        self.playerpriority = 1;
         super.init()
     }
     override func didEnter(from previousState: GKState?)
     {
+        self.playerpriority = 1;
         scene?.addChild(player1label)
         scene?.addChild(player2label)
         scene?.addChild(player3label)
@@ -80,6 +84,7 @@ class DraftState : GKState
         scene?.addChild(draftphase)
         for _ in 0...3
         {
+            print (deck?.count)
             let card = deck?.pop()
             draft.append(card!)
             card?.position = CGPoint(x:-480, y:0)
@@ -88,7 +93,7 @@ class DraftState : GKState
         }
         for i in 0..<draft.count
         {
-            draft[i].run(SKAction.move(to: positions[i], duration: 3))
+            draft[i].run(SKAction.move(to: positions[i], duration: 1.5))
         }
     }
     override func willExit(to nextState: GKState)
@@ -102,6 +107,15 @@ class DraftState : GKState
             draft[i].removeFromParent()
         }
         draftphase.removeFromParent()
+        draft.removeAll()
+    }
+    func changePriority()
+    {
+        playerpriority += 1
+    }
+    func getPriority()->Int
+    {
+        return playerpriority
     }
 }
 class PlayState1 : GKState
@@ -153,6 +167,10 @@ class PlayState1 : GKState
     override func willExit(to nextState: GKState)
     {
         playerlabel.removeFromParent()
+        for i in 0..<hand.count
+        {
+            hand[i].removeFromParent()
+        }
     }
 }
 class PlayState2 : GKState
@@ -204,6 +222,10 @@ class PlayState2 : GKState
     override func willExit(to nextState: GKState)
     {
         playerlabel.removeFromParent()
+        for i in 0..<hand.count
+        {
+            hand[i].removeFromParent()
+        }
     }
 }
 class PlayState3 : GKState
@@ -255,6 +277,10 @@ class PlayState3 : GKState
     override func willExit(to nextState: GKState)
     {
         playerlabel.removeFromParent()
+        for i in 0..<hand.count
+        {
+            hand[i].removeFromParent()
+        }
     }
 }
 class PlayState4 : GKState
@@ -306,5 +332,9 @@ class PlayState4 : GKState
     override func willExit(to nextState: GKState)
     {
         playerlabel.removeFromParent()
+        for i in 0..<hand.count
+        {
+            hand[i].removeFromParent()
+        }
     }
 }

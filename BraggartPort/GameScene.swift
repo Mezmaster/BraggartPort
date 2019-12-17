@@ -106,7 +106,51 @@ class GameScene: SKScene
     }
     func touchUp(atPoint pos : CGPoint)
     {
-        
+        switch stateMachine.currentState
+        {
+        case is DraftState:
+            if let card = atPoint(pos) as? Card
+            {
+                switch (stateMachine.currentState as! DraftState).getPriority()
+                {
+                case 1:
+                    card.run(SKAction.move(to: CGPoint(x: -240, y: 320), duration: 1))
+                    player1.drawCard(card: card)
+                    (stateMachine.currentState as! DraftState).changePriority()
+                case 2:
+                    card.run(SKAction.move(to: CGPoint(x: 240, y: 320), duration: 1))
+                    player2.drawCard(card: card)
+                    (stateMachine.currentState as! DraftState).changePriority()
+                case 3:
+                    card.run(SKAction.move(to: CGPoint(x: -240, y: -320), duration: 1))
+                    player3.drawCard(card: card)
+                    (stateMachine.currentState as! DraftState).changePriority()
+                case 4:
+                    card.run(SKAction.move(to: CGPoint(x: 240, y: -320), duration: 1))
+                    player4.drawCard(card: card)
+                    (stateMachine.currentState as! DraftState).changePriority()
+                default:
+                    break;
+                }
+            }
+            else if (stateMachine.currentState as! DraftState).getPriority() == 5
+            {
+                stateMachine.enter(PlayState1.self)
+            }
+        case is PlayState1:
+            if let card = atPoint(pos) as? Card
+            {
+                
+            }
+        case is PlayState2:
+            print("Bastard ravioli")
+        case is PlayState3:
+            print("Shitlord tagiatelle")
+        case is PlayState4:
+            print("Clara macaroni")
+        default:
+            break;
+        }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
@@ -117,7 +161,7 @@ class GameScene: SKScene
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        
+
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {

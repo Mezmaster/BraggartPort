@@ -13,10 +13,10 @@ class Player
 {
     var playernames:[String] = ["Jaxa", "Tyne", "Mori", "Liliana", "Chandra", "Jace", "Gideon", "Lucien", "Jasper",
     "Rosalia", "Marie", "Joel", "Yavvum", "Teka", "Cronos", "Kratos", "Geralt", "Alistair", "Ulfric", "Wulfric",
-    "Miku", "Luka", "Rin", "Garrosh", "Xanathar", "Bolas", "Ophelia", "Courtney", "Jester", "Fjord", "Alduin",
+    "Miku", "Luka", "Rin", "Teto", "Garrosh", "Xanathar", "Bolas", "Ophelia", "Clara", "Courtney", "Jester", "Fjord", "Alduin",
     "Jaune", "Ruby", "Yang", "Blake", "Weiss", "Nora", "Ren", "Morrigan", "Ciri", "Charlotte", "Albert", "Olie",
     "Jordan", "Calcifer", "Matt", "Nate", "Rhys", "Carlo", "Hannah", "Kim", "Tim", "Ashiok", "Garruk", "Link", "Lonk",
-    "Zelda", "Zoldo"]
+    "Zelda", "Zoldo", "Linkle", "Lonkle"]
     var playername:String
     var playerscore:Int
     var playerhand:[Card]
