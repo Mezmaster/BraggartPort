@@ -30,6 +30,10 @@ class DraftState : GKState
     var player2name : String
     var player3name : String
     var player4name : String
+    var player1score : Int
+    var player2score : Int
+    var player3score : Int
+    var player4score : Int
     var card1position : CGPoint
     var card2position : CGPoint
     var card3position : CGPoint
@@ -46,23 +50,27 @@ class DraftState : GKState
         self.player3name = player3.getPlayerName()
         self.player4hand = player4.getHandSize()
         self.player4name = player4.getPlayerName()
+        self.player1score = player1.getPlayerScore()
+        self.player2score = player2.getPlayerScore()
+        self.player3score = player3.getPlayerScore()
+        self.player4score = player4.getPlayerScore()
         player1label = SKLabelNode()
         self.player1label.position = CGPoint(x: -250, y: 180)
         self.player1label.zPosition = CGFloat(2)
-        self.player1label.text = "\(player1name): \(player1hand) cards"
+        self.player1label.text = "\(player1name): \(player1hand) cards (\(player1score))"
         self.player1label.fontColor = UIColor.green
         player2label = SKLabelNode()
         self.player2label.position = CGPoint(x: 250, y: 180)
         self.player2label.zPosition = CGFloat(2)
-        self.player2label.text = "\(player2name): \(player2hand) cards"
+        self.player2label.text = "\(player2name): \(player2hand) cards (\(player1score))"
         player3label = SKLabelNode()
         self.player3label.position = CGPoint(x: -250, y: -200)
         self.player3label.zPosition = CGFloat(2)
-        self.player3label.text = "\(player3name): \(player3hand) cards"
+        self.player3label.text = "\(player3name): \(player3hand) cards (\(player1score))"
         player4label = SKLabelNode()
         self.player4label.position = CGPoint(x: 250, y: -200)
         self.player4label.zPosition = CGFloat(2)
-        self.player4label.text = "\(player4name): \(player4hand) cards"
+        self.player4label.text = "\(player4name): \(player4hand) cards (\(player1score))"
         self.card1position = CGPoint(x: 240, y:0)
         self.card2position = CGPoint(x: 80, y:0)
         self.card3position = CGPoint(x:-80, y:0)
@@ -125,6 +133,7 @@ class PlayState1 : GKState
     var player : Player?
     var handsize : Int?
     var hand:[Card] = []
+    var play:[Card] = []
     var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
                                    CGPoint(x: 200, y: -150),
                                    CGPoint(x: 120, y: -150),
@@ -133,6 +142,7 @@ class PlayState1 : GKState
                                    CGPoint(x: -120, y: -150),
                                    CGPoint(x:-200, y: -150),
                                    CGPoint(x: -280, y: -150)]
+    var positions:[CGPoint] = [CGPoint(x: 240, y: 0), CGPoint(x: 80, y:0), CGPoint(x: -80, y:0), CGPoint(x:-240, y:0)]
     var playerlabel : SKLabelNode!
     var playername : String
     init (scene: GameScene, player: Player, deck: DeckStack)
@@ -171,6 +181,19 @@ class PlayState1 : GKState
         {
             hand[i].removeFromParent()
         }
+        for i in 0..<play.count
+        {
+            player?.increasePlayerScore(increase: play[i].getFinalValue())
+            print(player?.getPlayerScore())
+        }
+    }
+    func getPlayPosition(index: Int)->CGPoint
+    {
+        return positions[index - 1]
+    }
+    func playCard(card: Card)
+    {
+        play.append(card)
     }
 }
 class PlayState2 : GKState
@@ -188,6 +211,7 @@ class PlayState2 : GKState
                                    CGPoint(x: -120, y: -150),
                                    CGPoint(x:-200, y: -150),
                                    CGPoint(x: -280, y: -150)]
+    var positions:[CGPoint] = [CGPoint(x: 240, y: 0), CGPoint(x: 80, y:0), CGPoint(x: -80, y:0), CGPoint(x:-240, y:0)]
     var playerlabel : SKLabelNode!
     var playername : String
     init (scene: GameScene, player: Player, deck: DeckStack)
@@ -226,6 +250,10 @@ class PlayState2 : GKState
         {
             hand[i].removeFromParent()
         }
+    }
+    func getPlayPosition(index: Int)->CGPoint
+    {
+        return positions[index - 1]
     }
 }
 class PlayState3 : GKState
@@ -243,6 +271,7 @@ class PlayState3 : GKState
                                    CGPoint(x: -120, y: -150),
                                    CGPoint(x:-200, y: -150),
                                    CGPoint(x: -280, y: -150)]
+    var positions:[CGPoint] = [CGPoint(x: 240, y: 0), CGPoint(x: 80, y:0), CGPoint(x: -80, y:0), CGPoint(x:-240, y:0)]
     var playerlabel : SKLabelNode!
     var playername : String
     init (scene: GameScene, player: Player, deck: DeckStack)
@@ -281,6 +310,10 @@ class PlayState3 : GKState
         {
             hand[i].removeFromParent()
         }
+    }
+    func getPlayPosition(index: Int)->CGPoint
+    {
+        return positions[index - 1]
     }
 }
 class PlayState4 : GKState
@@ -298,6 +331,7 @@ class PlayState4 : GKState
                                    CGPoint(x: -120, y: -150),
                                    CGPoint(x:-200, y: -150),
                                    CGPoint(x: -280, y: -150)]
+    var positions:[CGPoint] = [CGPoint(x: 240, y: 0), CGPoint(x: 80, y:0), CGPoint(x: -80, y:0), CGPoint(x:-240, y:0)]
     var playerlabel : SKLabelNode!
     var playername : String
     init (scene: GameScene, player: Player, deck: DeckStack)
@@ -336,5 +370,9 @@ class PlayState4 : GKState
         {
             hand[i].removeFromParent()
         }
+    }
+    func getPlayPosition(index: Int)->CGPoint
+    {
+        return positions[index - 1]
     }
 }

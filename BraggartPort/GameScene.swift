@@ -140,14 +140,107 @@ class GameScene: SKScene
         case is PlayState1:
             if let card = atPoint(pos) as? Card
             {
-                
+                switch card.getCardType()
+                {
+                case 1:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState1).getPlayPosition(index: 4), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState1).playCard(card: card)
+                case 2:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState1).getPlayPosition(index: 3), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState1).playCard(card: card)
+                case 3:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState1).getPlayPosition(index: 2), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState1).playCard(card: card)
+                case 4:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState1).getPlayPosition(index: 1), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState1).playCard(card: card)
+                default:
+                    break;
+                }
+            }
+            else if let turnend = atPoint(pos) as? SKLabelNode
+            {
+                stateMachine.enter(PlayState2.self)
             }
         case is PlayState2:
-            print("Bastard ravioli")
+            if let card = atPoint(pos) as? Card
+            {
+                switch card.getCardType()
+                {
+                case 1:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState2).getPlayPosition(index: 4), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 2:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState2).getPlayPosition(index: 3), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 3:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState2).getPlayPosition(index: 2), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 4:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState2).getPlayPosition(index: 1), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                default:
+                    break;
+                }
+            }
+            else if let turnend = atPoint(pos) as? SKLabelNode
+            {
+                stateMachine.enter(PlayState3.self)
+            }
         case is PlayState3:
-            print("Shitlord tagiatelle")
+            if let card = atPoint(pos) as? Card
+            {
+                switch card.getCardType()
+                {
+                case 1:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState3).getPlayPosition(index: 4), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 2:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState3).getPlayPosition(index: 3), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 3:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState3).getPlayPosition(index: 2), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 4:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState3).getPlayPosition(index: 1), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                default:
+                    break;
+                }
+            }
+            else if let turnend = atPoint(pos) as? SKLabelNode
+            {
+                stateMachine.enter(PlayState4.self)
+            }
         case is PlayState4:
-            print("Clara macaroni")
+            if let card = atPoint(pos) as? Card
+            {
+                switch card.getCardType()
+                {
+                case 1:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState4).getPlayPosition(index: 4), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 2:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState4).getPlayPosition(index: 3), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 3:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState4).getPlayPosition(index: 2), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                case 4:
+                    card.run(SKAction.move(to: (stateMachine.currentState as! PlayState4).getPlayPosition(index: 1), duration: 1))
+                    card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                default:
+                    break;
+                }
+            }
+            else if let turnend = atPoint(pos) as? SKLabelNode
+            {
+                stateMachine.enter(DraftState.self)
+            }
         default:
             break;
         }
