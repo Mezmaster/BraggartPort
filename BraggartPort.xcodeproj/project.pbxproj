@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		5F0EEE1323A79939009B5643 /* manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0EEE1223A79939009B5643 /* manager.swift */; };
 		5F392456237031A800D7F29E /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F392455237031A800D7F29E /* PlayScene.sks */; };
-		5F3A3F4B23A914AE0047D8F8 /* scores.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F3A3F4A23A914AE0047D8F8 /* scores.strings */; };
-		5F3A3F4D23A914C60047D8F8 /* score.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3A3F4C23A914C60047D8F8 /* score.rtf */; };
 		5FBF58C6237968BE00ACFFE7 /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBF58C5237968BE00ACFFE7 /* player.swift */; };
 		5FBF58C823796F5200ACFFE7 /* deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBF58C723796F5200ACFFE7 /* deck.swift */; };
 		5FD3F99B2366FD89009C2290 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3F99A2366FD89009C2290 /* AppDelegate.swift */; };
@@ -45,8 +43,6 @@
 /* Begin PBXFileReference section */
 		5F0EEE1223A79939009B5643 /* manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manager.swift; sourceTree = "<group>"; };
 		5F392455237031A800D7F29E /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
-		5F3A3F4A23A914AE0047D8F8 /* scores.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = scores.strings; sourceTree = "<group>"; };
-		5F3A3F4C23A914C60047D8F8 /* score.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = score.rtf; sourceTree = "<group>"; };
 		5FBF58C5237968BE00ACFFE7 /* player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
 		5FBF58C723796F5200ACFFE7 /* deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deck.swift; sourceTree = "<group>"; };
 		5FD3F9972366FD89009C2290 /* BraggartPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BraggartPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,8 +119,6 @@
 				5FBF58C5237968BE00ACFFE7 /* player.swift */,
 				5FBF58C723796F5200ACFFE7 /* deck.swift */,
 				5F0EEE1223A79939009B5643 /* manager.swift */,
-				5F3A3F4A23A914AE0047D8F8 /* scores.strings */,
-				5F3A3F4C23A914C60047D8F8 /* score.rtf */,
 				5FD3F9A22366FD89009C2290 /* GameViewController.swift */,
 				5FD3F9A42366FD89009C2290 /* Main.storyboard */,
 				5FD3F9A72366FD8A009C2290 /* Assets.xcassets */,
@@ -260,10 +254,8 @@
 				5FD3F9A62366FD89009C2290 /* Main.storyboard in Resources */,
 				5FD3F99D2366FD89009C2290 /* GameScene.sks in Resources */,
 				5FD3F9A82366FD8A009C2290 /* Assets.xcassets in Resources */,
-				5F3A3F4B23A914AE0047D8F8 /* scores.strings in Resources */,
 				5FD3F9AB2366FD8A009C2290 /* LaunchScreen.storyboard in Resources */,
 				5FD3F99F2366FD89009C2290 /* Actions.sks in Resources */,
-				5F3A3F4D23A914C60047D8F8 /* score.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

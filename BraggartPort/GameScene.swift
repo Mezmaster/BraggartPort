@@ -342,6 +342,27 @@ class GameScene: SKScene
     var player2 = Player()
     var player3 = Player()
     var player4 = Player()
+    func WriteToText()
+    {
+        let file = "file.txt"
+        let text = "Plz work"
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        {
+            let fileURL = dir.appendingPathComponent(file)
+            do
+            {
+                try text.write(to: fileURL, atomically: false, encoding: .utf8)
+            }
+            catch {"Butts"}
+            
+            do
+            {
+                let text2 = try String(contentsOf: fileURL, encoding: .utf8)
+                print(text2)
+            }
+            catch {"Butts"}
+        }
+    }
     override func didMove(to view: SKView)
     {
         var initialcards:[Card] = []
@@ -383,7 +404,7 @@ class GameScene: SKScene
     }
     func touchUp(atPoint pos : CGPoint)
     {
-
+        WriteToText()
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
