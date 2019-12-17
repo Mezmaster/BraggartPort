@@ -9,15 +9,18 @@
 import Foundation
 import SpriteKit
 import GameplayKit
-/*
+
 class DraftState : GKState
 {
     var scene : GameScene?
+    var deck : DeckStack?
+    var draft:[Card] = []
+    var positions:[CGPoint] = [CGPoint(x: 240, y: 0), CGPoint(x: 80, y:0), CGPoint(x: -80, y:0), CGPoint(x:-240, y:0)]
     var player1label : SKLabelNode!
     var player2label: SKLabelNode!
     var player3label : SKLabelNode!
     var player4label : SKLabelNode!
-    //var draftphase : SKLabelNode
+    var draftphase : SKLabelNode!
     var player1hand : Int
     var player2hand : Int
     var player3hand : Int
@@ -26,9 +29,14 @@ class DraftState : GKState
     var player2name : String
     var player3name : String
     var player4name : String
-    init (scene: GameScene, player1: Player, player2: Player, player3: Player, player4: Player)
+    var card1position : CGPoint
+    var card2position : CGPoint
+    var card3position : CGPoint
+    var card4position : CGPoint
+    init (scene: GameScene, player1: Player, player2: Player, player3: Player, player4: Player, deck: DeckStack)
     {
         self.scene = scene
+        self.deck = deck
         self.player1hand = player1.getHandSize()
         self.player1name = player1.getPlayerName()
         self.player2hand = player2.getHandSize()
@@ -53,6 +61,14 @@ class DraftState : GKState
         self.player4label.position = CGPoint(x: 250, y: -200)
         self.player4label.zPosition = CGFloat(2)
         self.player4label.text = "\(player4name): \(player4hand) cards"
+        self.card1position = CGPoint(x: 240, y:0)
+        self.card2position = CGPoint(x: 80, y:0)
+        self.card3position = CGPoint(x:-80, y:0)
+        self.card4position = CGPoint(x: -240, y:0)
+        draftphase = SKLabelNode()
+        self.draftphase.position = CGPoint(x: 0, y: 120)
+        self.draftphase.zPosition = CGFloat(2)
+        self.draftphase.text = "Draft Phase"
         super.init()
     }
     override func didEnter(from previousState: GKState?)
@@ -61,6 +77,19 @@ class DraftState : GKState
         scene?.addChild(player2label)
         scene?.addChild(player3label)
         scene?.addChild(player4label)
+        scene?.addChild(draftphase)
+        for _ in 0...3
+        {
+            let card = deck?.pop()
+            draft.append(card!)
+            card?.position = CGPoint(x:-480, y:0)
+            card?.zPosition = CGFloat(1)
+            scene?.addChild(card!)
+        }
+        for i in 0..<draft.count
+        {
+            draft[i].run(SKAction.move(to: positions[i], duration: 3))
+        }
     }
     override func willExit(to nextState: GKState)
     {
@@ -68,16 +97,34 @@ class DraftState : GKState
         player2label.removeFromParent()
         player3label.removeFromParent()
         player4label.removeFromParent()
+        for i in 0..<draft.count
+        {
+            draft[i].removeFromParent()
+        }
+        draftphase.removeFromParent()
     }
 }
 class PlayState1 : GKState
 {
     var scene : GameScene?
+    var deck : DeckStack?
+    var player : Player?
+    var handsize : Int?
+    var hand:[Card] = []
+    var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
+                                   CGPoint(x: 200, y: -150),
+                                   CGPoint(x: 120, y: -150),
+                                   CGPoint(x: 40, y: -150),
+                                   CGPoint(x: -40, y: -150),
+                                   CGPoint(x: -120, y: -150),
+                                   CGPoint(x:-200, y: -150),
+                                   CGPoint(x: -280, y: -150)]
     var playerlabel : SKLabelNode!
     var playername : String
-    init (scene: GameScene, player: Player)
+    init (scene: GameScene, player: Player, deck: DeckStack)
     {
         self.scene = scene
+        self.player = player
         self.playername = player.getPlayerName()
         playerlabel = SKLabelNode()
         self.playerlabel.position = CGPoint(x: -277, y: 181)
@@ -87,7 +134,21 @@ class PlayState1 : GKState
     }
     override func didEnter(from previousState: GKState?)
     {
+        let handsize = player?.getHandSize() as! Int
         scene?.addChild(playerlabel)
+        for i in 0..<handsize
+        {
+            let card = player?.getCard(index: i)
+            hand.append(card!)
+            card?.position = CGPoint(x: -400, y: -150)
+            card?.size = CGSize(width: 60, height: 90)
+            card?.zPosition = CGFloat(3)
+            scene?.addChild(card!)
+        }
+        for i in 0..<handsize
+        {
+            hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
+        }
     }
     override func willExit(to nextState: GKState)
     {
@@ -97,11 +158,24 @@ class PlayState1 : GKState
 class PlayState2 : GKState
 {
     var scene : GameScene?
+    var deck : DeckStack?
+    var player : Player?
+    var handsize : Int?
+    var hand:[Card] = []
+    var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
+                                   CGPoint(x: 200, y: -150),
+                                   CGPoint(x: 120, y: -150),
+                                   CGPoint(x: 40, y: -150),
+                                   CGPoint(x: -40, y: -150),
+                                   CGPoint(x: -120, y: -150),
+                                   CGPoint(x:-200, y: -150),
+                                   CGPoint(x: -280, y: -150)]
     var playerlabel : SKLabelNode!
     var playername : String
-    init (scene: GameScene, player: Player)
+    init (scene: GameScene, player: Player, deck: DeckStack)
     {
         self.scene = scene
+        self.player = player
         self.playername = player.getPlayerName()
         playerlabel = SKLabelNode()
         self.playerlabel.position = CGPoint(x: -277, y: 181)
@@ -111,7 +185,21 @@ class PlayState2 : GKState
     }
     override func didEnter(from previousState: GKState?)
     {
+        let handsize = player?.getHandSize() as! Int
         scene?.addChild(playerlabel)
+        for i in 0..<handsize
+        {
+            let card = player?.getCard(index: i)
+            hand.append(card!)
+            card?.position = CGPoint(x: -400, y: -150)
+            card?.size = CGSize(width: 60, height: 90)
+            card?.zPosition = CGFloat(3)
+            scene?.addChild(card!)
+        }
+        for i in 0..<handsize
+        {
+            hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
+        }
     }
     override func willExit(to nextState: GKState)
     {
@@ -121,11 +209,24 @@ class PlayState2 : GKState
 class PlayState3 : GKState
 {
     var scene : GameScene?
+    var deck : DeckStack?
+    var player : Player?
+    var handsize : Int?
+    var hand:[Card] = []
+    var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
+                                   CGPoint(x: 200, y: -150),
+                                   CGPoint(x: 120, y: -150),
+                                   CGPoint(x: 40, y: -150),
+                                   CGPoint(x: -40, y: -150),
+                                   CGPoint(x: -120, y: -150),
+                                   CGPoint(x:-200, y: -150),
+                                   CGPoint(x: -280, y: -150)]
     var playerlabel : SKLabelNode!
     var playername : String
-    init (scene: GameScene, player: Player)
+    init (scene: GameScene, player: Player, deck: DeckStack)
     {
         self.scene = scene
+        self.player = player
         self.playername = player.getPlayerName()
         playerlabel = SKLabelNode()
         self.playerlabel.position = CGPoint(x: -277, y: 181)
@@ -135,7 +236,21 @@ class PlayState3 : GKState
     }
     override func didEnter(from previousState: GKState?)
     {
+        let handsize = player?.getHandSize() as! Int
         scene?.addChild(playerlabel)
+        for i in 0..<handsize
+        {
+            let card = player?.getCard(index: i)
+            hand.append(card!)
+            card?.position = CGPoint(x: -400, y: -150)
+            card?.size = CGSize(width: 60, height: 90)
+            card?.zPosition = CGFloat(3)
+            scene?.addChild(card!)
+        }
+        for i in 0..<handsize
+        {
+            hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
+        }
     }
     override func willExit(to nextState: GKState)
     {
@@ -145,11 +260,24 @@ class PlayState3 : GKState
 class PlayState4 : GKState
 {
     var scene : GameScene?
+    var deck : DeckStack?
+    var player : Player?
+    var handsize : Int?
+    var hand:[Card] = []
+    var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
+                                   CGPoint(x: 200, y: -150),
+                                   CGPoint(x: 120, y: -150),
+                                   CGPoint(x: 40, y: -150),
+                                   CGPoint(x: -40, y: -150),
+                                   CGPoint(x: -120, y: -150),
+                                   CGPoint(x:-200, y: -150),
+                                   CGPoint(x: -280, y: -150)]
     var playerlabel : SKLabelNode!
     var playername : String
-    init (scene: GameScene, player: Player)
+    init (scene: GameScene, player: Player, deck: DeckStack)
     {
         self.scene = scene
+        self.player = player
         self.playername = player.getPlayerName()
         playerlabel = SKLabelNode()
         self.playerlabel.position = CGPoint(x: -277, y: 181)
@@ -159,11 +287,24 @@ class PlayState4 : GKState
     }
     override func didEnter(from previousState: GKState?)
     {
+        let handsize = player?.getHandSize() as! Int
         scene?.addChild(playerlabel)
+        for i in 0..<handsize
+        {
+            let card = player?.getCard(index: i)
+            hand.append(card!)
+            card?.position = CGPoint(x: -400, y: -150)
+            card?.size = CGSize(width: 60, height: 90)
+            card?.zPosition = CGFloat(3)
+            scene?.addChild(card!)
+        }
+        for i in 0..<handsize
+        {
+            hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
+        }
     }
     override func willExit(to nextState: GKState)
     {
         playerlabel.removeFromParent()
     }
 }
-*/
