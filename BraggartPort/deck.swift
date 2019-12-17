@@ -47,10 +47,9 @@ class Card : SKSpriteNode
     {
         cardname = cardnames[index]
         cardtexture = SKTexture(imageNamed: cardtextures[index])
-        //cardtexture = SKTexture(imageNamed: "FoeFellKnightCard")
         boastcardvalue = boastcardvalues[index]
         finalcardvalue = finalcardvalues[index]
-        super.init(texture: cardtexture, color: .clear, size: CGSize(width:120, height:180))
+        super.init(texture: cardtexture, color: .clear, size: CGSize(width: 120, height: 180))
     }
     func getBoastValue()->Int
     {

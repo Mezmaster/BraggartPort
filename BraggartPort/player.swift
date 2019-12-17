@@ -15,7 +15,8 @@ class Player
     "Rosalia", "Marie", "Joel", "Yavvum", "Teka", "Cronos", "Kratos", "Geralt", "Alistair", "Ulfric", "Wulfric",
     "Miku", "Luka", "Rin", "Garrosh", "Xanathar", "Bolas", "Ophelia", "Courtney", "Jester", "Fjord", "Alduin",
     "Jaune", "Ruby", "Yang", "Blake", "Weiss", "Nora", "Ren", "Morrigan", "Ciri", "Charlotte", "Albert", "Olie",
-    "Jordan", "Calcifer", "Matt", "Nate", "Rhys", "Carlo"]
+    "Jordan", "Calcifer", "Matt", "Nate", "Rhys", "Carlo", "Hannah", "Kim", "Tim", "Ashiok", "Garruk", "Link", "Lonk",
+    "Zelda", "Zoldo"]
     var playername:String
     var playerscore:Int
     var playerhand:[Card]
@@ -46,6 +47,10 @@ class Player
     func drawCard(card:Card)
     {
         playerhand.append(card)
+    }
+    func displayCard(index: Int)->Card
+    {
+        return playerhand[index]
     }
 }
 class HumanPlayer: Player
