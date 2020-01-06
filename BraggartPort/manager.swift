@@ -62,15 +62,15 @@ class DraftState : GKState
         player2label = SKLabelNode()
         self.player2label.position = CGPoint(x: 250, y: 180)
         self.player2label.zPosition = CGFloat(2)
-        self.player2label.text = "\(player2name): \(player2hand) cards (\(player1score))"
+        self.player2label.text = "\(player2name): \(player2hand) cards (\(player2score))"
         player3label = SKLabelNode()
         self.player3label.position = CGPoint(x: -250, y: -200)
         self.player3label.zPosition = CGFloat(2)
-        self.player3label.text = "\(player3name): \(player3hand) cards (\(player1score))"
+        self.player3label.text = "\(player3name): \(player3hand) cards (\(player3score))"
         player4label = SKLabelNode()
         self.player4label.position = CGPoint(x: 250, y: -200)
         self.player4label.zPosition = CGFloat(2)
-        self.player4label.text = "\(player4name): \(player4hand) cards (\(player1score))"
+        self.player4label.text = "\(player4name): \(player4hand) cards (\(player4score))"
         self.card1position = CGPoint(x: 240, y:0)
         self.card2position = CGPoint(x: 80, y:0)
         self.card3position = CGPoint(x:-80, y:0)
@@ -184,7 +184,7 @@ class PlayState1 : GKState
         for i in 0..<play.count
         {
             player?.increasePlayerScore(increase: play[i].getFinalValue())
-            print(player?.getPlayerScore())
+            print(player?.getPlayerScore() as! Int)
         }
     }
     func getPlayPosition(index: Int)->CGPoint
@@ -203,6 +203,7 @@ class PlayState2 : GKState
     var player : Player?
     var handsize : Int?
     var hand:[Card] = []
+    var play:[Card] = []
     var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
                                    CGPoint(x: 200, y: -150),
                                    CGPoint(x: 120, y: -150),
@@ -250,10 +251,19 @@ class PlayState2 : GKState
         {
             hand[i].removeFromParent()
         }
+        for i in 0..<play.count
+        {
+            player?.increasePlayerScore(increase: play[i].getFinalValue())
+            print(player?.getPlayerScore() as! Int)
+        }
     }
     func getPlayPosition(index: Int)->CGPoint
     {
         return positions[index - 1]
+    }
+    func playCard(card: Card)
+    {
+        play.append(card)
     }
 }
 class PlayState3 : GKState
@@ -263,6 +273,7 @@ class PlayState3 : GKState
     var player : Player?
     var handsize : Int?
     var hand:[Card] = []
+    var play:[Card] = []
     var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
                                    CGPoint(x: 200, y: -150),
                                    CGPoint(x: 120, y: -150),
@@ -302,6 +313,7 @@ class PlayState3 : GKState
         {
             hand[i].run(SKAction.move(to: handpositions[i], duration: 1))
         }
+
     }
     override func willExit(to nextState: GKState)
     {
@@ -310,10 +322,19 @@ class PlayState3 : GKState
         {
             hand[i].removeFromParent()
         }
+        for i in 0..<play.count
+        {
+            player?.increasePlayerScore(increase: play[i].getFinalValue())
+            print(player?.getPlayerScore() as! Int)
+        }
     }
     func getPlayPosition(index: Int)->CGPoint
     {
         return positions[index - 1]
+    }
+    func playCard(card: Card)
+    {
+        play.append(card)
     }
 }
 class PlayState4 : GKState
@@ -323,6 +344,7 @@ class PlayState4 : GKState
     var player : Player?
     var handsize : Int?
     var hand:[Card] = []
+    var play:[Card] = []
     var handpositions:[CGPoint] = [CGPoint(x: 280, y: -150),
                                    CGPoint(x: 200, y: -150),
                                    CGPoint(x: 120, y: -150),
@@ -370,9 +392,18 @@ class PlayState4 : GKState
         {
             hand[i].removeFromParent()
         }
+        for i in 0..<play.count
+        {
+            player?.increasePlayerScore(increase: play[i].getFinalValue())
+            print(player?.getPlayerScore() as! Int)
+        }
     }
     func getPlayPosition(index: Int)->CGPoint
     {
         return positions[index - 1]
+    }
+    func playCard(card: Card)
+    {
+        play.append(card)
     }
 }

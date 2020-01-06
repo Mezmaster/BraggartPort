@@ -174,15 +174,19 @@ class GameScene: SKScene
                 case 1:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState2).getPlayPosition(index: 4), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState2).playCard(card: card)
                 case 2:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState2).getPlayPosition(index: 3), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState2).playCard(card: card)
                 case 3:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState2).getPlayPosition(index: 2), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState2).playCard(card: card)
                 case 4:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState2).getPlayPosition(index: 1), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState2).playCard(card: card)
                 default:
                     break;
                 }
@@ -199,15 +203,19 @@ class GameScene: SKScene
                 case 1:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState3).getPlayPosition(index: 4), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState3).playCard(card: card)
                 case 2:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState3).getPlayPosition(index: 3), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState3).playCard(card: card)
                 case 3:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState3).getPlayPosition(index: 2), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState3).playCard(card: card)
                 case 4:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState3).getPlayPosition(index: 1), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState3).playCard(card: card)
                 default:
                     break;
                 }
@@ -224,15 +232,19 @@ class GameScene: SKScene
                 case 1:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState4).getPlayPosition(index: 4), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState4).playCard(card: card)
                 case 2:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState4).getPlayPosition(index: 3), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState4).playCard(card: card)
                 case 3:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState4).getPlayPosition(index: 2), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState4).playCard(card: card)
                 case 4:
                     card.run(SKAction.move(to: (stateMachine.currentState as! PlayState4).getPlayPosition(index: 1), duration: 1))
                     card.run(SKAction.scale(to: CGSize(width: 120, height: 180), duration: 1))
+                    (stateMachine.currentState as! PlayState4).playCard(card: card)
                 default:
                     break;
                 }
