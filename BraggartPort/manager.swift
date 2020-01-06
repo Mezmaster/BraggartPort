@@ -92,7 +92,6 @@ class DraftState : GKState
         scene?.addChild(draftphase)
         for _ in 0...3
         {
-            print (deck?.count)
             let card = deck?.pop()
             draft.append(card!)
             card?.position = CGPoint(x:-480, y:0)
@@ -185,6 +184,7 @@ class PlayState1 : GKState
         {
             player?.increasePlayerScore(increase: play[i].getFinalValue())
             print(player?.getPlayerScore() as! Int)
+            
         }
     }
     func getPlayPosition(index: Int)->CGPoint

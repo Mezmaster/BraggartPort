@@ -162,9 +162,10 @@ class GameScene: SKScene
                     break;
                 }
             }
-            else if let turnend = atPoint(pos) as? SKLabelNode
+            else if let _ = atPoint(pos) as? SKLabelNode
             {
                 stateMachine.enter(PlayState2.self)
+                WriteToText(playername: player1.getPlayerName(), playerscore: player1.getPlayerScore())
             }
         case is PlayState2:
             if let card = atPoint(pos) as? Card
@@ -191,9 +192,11 @@ class GameScene: SKScene
                     break;
                 }
             }
-            else if let turnend = atPoint(pos) as? SKLabelNode
+            else if let _ = atPoint(pos) as? SKLabelNode
             {
                 stateMachine.enter(PlayState3.self)
+                WriteToText(playername: player2.getPlayerName(), playerscore: player2.getPlayerScore())
+                
             }
         case is PlayState3:
             if let card = atPoint(pos) as? Card
@@ -220,9 +223,10 @@ class GameScene: SKScene
                     break;
                 }
             }
-            else if let turnend = atPoint(pos) as? SKLabelNode
+            else if let _ = atPoint(pos) as? SKLabelNode
             {
                 stateMachine.enter(PlayState4.self)
+                WriteToText(playername: player3.getPlayerName(), playerscore: player3.getPlayerScore())
             }
         case is PlayState4:
             if let card = atPoint(pos) as? Card
@@ -249,9 +253,10 @@ class GameScene: SKScene
                     break;
                 }
             }
-            else if let turnend = atPoint(pos) as? SKLabelNode
+            else if let _ = atPoint(pos) as? SKLabelNode
             {
                 stateMachine.enter(DraftState.self)
+                WriteToText(playername: player4.getPlayerName(), playerscore: player4.getPlayerScore())
             }
         default:
             break;
