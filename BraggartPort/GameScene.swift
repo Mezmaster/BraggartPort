@@ -47,7 +47,7 @@ class GameScene: SKScene
     func WriteToText(playername: String, playerscore: Int)
     {
         let file = "file.txt"
-        let text = "Plz work"
+        let text = playername + ": " + String(playerscore)
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         {
             let fileURL = dir.appendingPathComponent(file)
